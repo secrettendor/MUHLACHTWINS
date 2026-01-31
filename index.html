@@ -61,14 +61,87 @@ h2 {
   <h2>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</h2>
 </div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  padding: 16px;
+  background: #111;
+  font-family: Arial, sans-serif;
+  color: #FF6F00;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 16px;
+  color: #FF6F00;
+  text-shadow: 0 0 10px #FF6F00;
+}
+
+#header img {
+  width: 180px;
+  border: 3px solid #FF6F00;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px #FF6F00;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #000;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 15px #FF6F00;
+  min-height: 200px;
+}
+
+.counter {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #FF6F00;
+}
+
+#widget-container {
+  margin: 20px auto;
+  max-width: 600px;
+  border: 2px solid #FF6F00;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #FF6F00;
+  padding: 10px;
+  background: #000;
+}
+
+@media(max-width:768px){
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="header">
+  <img src="https://i.imgur.com/your_image_here.jpg" alt="Andres & Atasha Muhlach">
+  <h2>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</h2>
+</div>
+
 <div class="grid" id="grid-container"></div>
 
+<div id="widget-container"></div>
+
 <script>
-// Number of visual cards
+// Create 10 visual cards
 const totalCards = 10;
 const grid = document.getElementById('grid-container');
-
-// Create 10 visual cards with counters
 for(let i=1;i<=totalCards;i++){
   const card = document.createElement('div');
   card.className = 'card';
@@ -82,7 +155,7 @@ for(let i=1;i<=totalCards;i++){
   grid.appendChild(card);
 }
 
-// Load single Choicely widget globally
+// Load single Choicely widget
 (function(w,d,id,src){
   var p={
     "bid":"choicely-widget-67152a0916e2",
@@ -96,7 +169,7 @@ for(let i=1;i<=totalCards;i++){
   d.getElementsByTagName('head')[0].appendChild(s);
 })(window,document,'choicely-widget','https://cdn.choicely.com/vx/widget.js');
 
-// Simulate vote counters per card
+// Simulate vote counters
 let voteCount = 0;
 const interval = setInterval(()=>{
   voteCount++;
@@ -106,4 +179,4 @@ const interval = setInterval(()=>{
 </script>
 
 </body>
-</html>qq
+</html>
