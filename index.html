@@ -134,48 +134,71 @@ h2 {
   <h2>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</h2>
 </div>
 
-<div class="grid" id="grid-container"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choicely Widgets</title>
+</head>
+<body>
 
-<div id="widget-container"></div>
+<h1>My 10 Choicely Widgets</h1>
+
+<!-- Paste the 10-widget embed here -->
+<div id="choicely-widget-1"></div>
+<div id="choicely-widget-2"></div>
+<div id="choicely-widget-3"></div>
+<div id="choicely-widget-4"></div>
+<div id="choicely-widget-5"></div>
+<div id="choicely-widget-6"></div>
+<div id="choicely-widget-7"></div>
+<div id="choicely-widget-8"></div>
+<div id="choicely-widget-9"></div>
+<div id="choicely-widget-10"></div>
 
 <script>
-// Create 10 visual cards
-const totalCards = 10;
-const grid = document.getElementById('grid-container');
-for(let i=1;i<=totalCards;i++){
-  const card = document.createElement('div');
-  card.className = 'card';
-  
-  const counter = document.createElement('div');
-  counter.className = 'counter';
-  counter.id = 'counter-' + i;
-  counter.innerText = `Vote ${i}: Pending`;
+(function(w,d,src){
+    const widgets = [
+        { bid:"choicely-widget-1", wk:"KEY1" },
+        { bid:"choicely-widget-2", wk:"KEY2" },
+        { bid:"choicely-widget-3", wk:"KEY3" },
+        { bid:"choicely-widget-4", wk:"KEY4" },
+        { bid:"choicely-widget-5", wk:"KEY5" },
+        { bid:"choicely-widget-6", wk:"KEY6" },
+        { bid:"choicely-widget-7", wk:"KEY7" },
+        { bid:"choicely-widget-8", wk:"KEY8" },
+        { bid:"choicely-widget-9", wk:"KEY9" },
+        { bid:"choicely-widget-10", wk:"KEY10" },
+    ];
 
-  card.appendChild(counter);
-  grid.appendChild(card);
-}
+    if (!d.getElementById('choicely-script')) {
+        const s = d.createElement('script');
+        s.async = true;
+        s.id = 'choicely-script';
+        s.src = src;
+        s.onload = initWidgets;
+        d.getElementsByTagName('head')[0].appendChild(s);
+    } else {
+        initWidgets();
+    }
 
-// Load single Choicely widget
-(function(w,d,id,src){
-  var p={
-    "bid":"choicely-widget-67152a0916e2",
-    "wk":"Y2hvaWNlbHktZXUvd2lkZ2V0cy90TXBOU2t0bkNkbXhqZHl4VEVySw"
-  };
-  var s=d.createElement('script');
-  s.async = 1;
-  s.id = id;
-  s.onload = function(){ w.ChoicelyWidget.i(p) };
-  s.src = src + '?t=' + Date.now();
-  d.getElementsByTagName('head')[0].appendChild(s);
-})(window,document,'choicely-widget','https://cdn.choicely.com/vx/widget.js');
+    function initWidgets() {
+        widgets.forEach(wcfg => {
+            if (w.ChoicelyWidget) {
+                w.ChoicelyWidget.i(wcfg);
+            } else {
+                const retry = setInterval(() => {
+                    if (w.ChoicelyWidget) {
+                        clearInterval(retry);
+                        w.ChoicelyWidget.i(wcfg);
+                    }
+                }, 500);
+            }
+        });
+    }
 
-// Simulate vote counters
-let voteCount = 0;
-const interval = setInterval(()=>{
-  voteCount++;
-  if(voteCount>totalCards){ clearInterval(interval); return; }
-  document.getElementById('counter-'+voteCount).innerText = `Vote ${voteCount}: Success`;
-}, 800);
+})(window, document, 'https://cdn.choicely.com/vx/widget.js?t=' + Date.now());
 </script>
 
 </body>
