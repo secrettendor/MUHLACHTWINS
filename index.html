@@ -157,48 +157,47 @@ h2 {
 <div id="choicely-widget-9"></div>
 <div id="choicely-widget-10"></div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choicely Voting Page</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+  h1 { text-align: center; margin-bottom: 30px; }
+  .widget-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .widget-card { background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); width: 300px; padding: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Vote for Your Favorites</h1>
+
+<div class="widget-grid">
+  <div class="widget-card" id="choicely-widget-1"></div>
+  <div class="widget-card" id="choicely-widget-2"></div>
+  <div class="widget-card" id="choicely-widget-3"></div>
+  <div class="widget-card" id="choicely-widget-4"></div>
+  <div class="widget-card" id="choicely-widget-5"></div>
+  <div class="widget-card" id="choicely-widget-6"></div>
+  <div class="widget-card" id="choicely-widget-7"></div>
+  <div class="widget-card" id="choicely-widget-8"></div>
+  <div class="widget-card" id="choicely-widget-9"></div>
+  <div class="widget-card" id="choicely-widget-10"></div>
+</div>
+
+<script src="https://cdn.choicely.com/vx/widget.js?t=<?=Date.now()?>"></script>
 <script>
-(function(w,d,src){
-    const widgets = [
-        { bid:"choicely-widget-1", wk:"KEY1" },
-        { bid:"choicely-widget-2", wk:"KEY2" },
-        { bid:"choicely-widget-3", wk:"KEY3" },
-        { bid:"choicely-widget-4", wk:"KEY4" },
-        { bid:"choicely-widget-5", wk:"KEY5" },
-        { bid:"choicely-widget-6", wk:"KEY6" },
-        { bid:"choicely-widget-7", wk:"KEY7" },
-        { bid:"choicely-widget-8", wk:"KEY8" },
-        { bid:"choicely-widget-9", wk:"KEY9" },
-        { bid:"choicely-widget-10", wk:"KEY10" },
-    ];
-
-    if (!d.getElementById('choicely-script')) {
-        const s = d.createElement('script');
-        s.async = true;
-        s.id = 'choicely-script';
-        s.src = src;
-        s.onload = initWidgets;
-        d.getElementsByTagName('head')[0].appendChild(s);
-    } else {
-        initWidgets();
-    }
-
-    function initWidgets() {
-        widgets.forEach(wcfg => {
-            if (w.ChoicelyWidget) {
-                w.ChoicelyWidget.i(wcfg);
-            } else {
-                const retry = setInterval(() => {
-                    if (w.ChoicelyWidget) {
-                        clearInterval(retry);
-                        w.ChoicelyWidget.i(wcfg);
-                    }
-                }, 500);
-            }
-        });
-    }
-
-})(window, document, 'https://cdn.choicely.com/vx/widget.js?t=' + Date.now());
+[
+  "REAL_WK1","REAL_WK2","REAL_WK3","REAL_WK4","REAL_WK5",
+  "REAL_WK6","REAL_WK7","REAL_WK8","REAL_WK9","REAL_WK10"
+].forEach((k,i)=>{
+  ChoicelyWidget.i({
+    bid: "choicely-widget-" + (i+1),
+    wk: k
+  });
+});
 </script>
 
 </body>
