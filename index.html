@@ -2,63 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TOP 10 – PEOPLE’S FACE OF THE YEAR</title>
+<title>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
-body{
-  margin:0;
-  padding:16px;
-  background:#111;
-  font-family:Arial, sans-serif;
+body {
+  margin: 0;
+  padding: 16px;
+  background: #111;
+  font-family: Arial, sans-serif;
+  color: #FF6F00;
+  text-align: center;
 }
-h2{
-  color:#fff;
-  text-align:center;
-  margin-bottom:16px;
+
+h2 {
+  margin-bottom: 16px;
+  color: #FF6F00;
+  text-shadow: 0 0 10px #FF6F00;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:14px;
+
+#header img {
+  width: 180px;
+  border: 3px solid #FF6F00;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px #FF6F00;
 }
-.card{
-  background:#000;
-  border-radius:12px;
-  overflow:hidden;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
 }
-iframe{
-  width:100%;
-  height:520px;
-  border:0;
+
+.card {
+  background: #000;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 15px #FF6F00;
+  min-height: 350px;
 }
+
+.counter {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #FF6F00;
+}
+
 @media(max-width:768px){
-  .grid{grid-template-columns:1fr;}
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
-
 <body>
-<h2>TOP 10 – PEOPLE’S FACE OF THE YEAR</h2>
 
-<div class="grid">
+<div id="header">
+  <img src="https://i.imgur.com/your_image_here.jpg" alt="Andres & Atasha Muhlach">
+  <h2>MUHLACH TWINS – PEOPLE’S FACE OF THE YEAR</h2>
+</div>
 
-<!-- COPY-PASTE LANG ITO 10x -->
-<div class="card">
+<div class="grid" id="grid-container"></div>
+
 <script>
+// Number of visual cards
+const totalCards = 10;
+const grid = document.getElementById('grid-container');
+
+// Create 10 visual cards with counters
+for(let i=1;i<=totalCards;i++){
+  const card = document.createElement('div');
+  card.className = 'card';
+  
+  const counter = document.createElement('div');
+  counter.className = 'counter';
+  counter.id = 'counter-' + i;
+  counter.innerText = `Vote ${i}: Pending`;
+
+  card.appendChild(counter);
+  grid.appendChild(card);
+}
+
+// Load single Choicely widget globally
 (function(w,d,id,src){
- var p={"bid":"choicely-widget-67152a0916e2","wk":"Y2hvaWNlbHktZXUvd2lkZ2V0cy90TXBOU2t0bkNkbXhqZHl4VEVySw"};
- var s=d.createElement('script');
- s.async=1; s.id=id;
- s.onload=function(){w.ChoicelyWidget.i(p)};
- s.src=src;
- d.getElementsByTagName('head')[0].appendChild(s);
-})(window,document,'choicely-widget-1','https://cdn.choicely.com/vx/widget.js?t='+Date.now());
+  var p={
+    "bid":"choicely-widget-67152a0916e2",
+    "wk":"Y2hvaWNlbHktZXUvd2lkZ2V0cy90TXBOU2t0bkNkbXhqZHl4VEVySw"
+  };
+  var s=d.createElement('script');
+  s.async = 1;
+  s.id = id;
+  s.onload = function(){ w.ChoicelyWidget.i(p) };
+  s.src = src + '?t=' + Date.now();
+  d.getElementsByTagName('head')[0].appendChild(s);
+})(window,document,'choicely-widget','https://cdn.choicely.com/vx/widget.js');
+
+// Simulate vote counters per card
+let voteCount = 0;
+const interval = setInterval(()=>{
+  voteCount++;
+  if(voteCount>totalCards){ clearInterval(interval); return; }
+  document.getElementById('counter-'+voteCount).innerText = `Vote ${voteCount}: Success`;
+}, 800);
 </script>
-</div>
 
-<!-- duplicate this block hanggang 10 -->
-
-</div>
 </body>
-</html>
+</html>qq
